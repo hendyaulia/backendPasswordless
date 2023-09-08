@@ -12,4 +12,3 @@ router.post("/otpLogin",[cersMiddleware.verifyCert] , usersController.otpLogin);
 router.post("/otpVerify",[cersMiddleware.verifyCert] , usersController.verifyOTP);
 
 module.exports = router;
-hendy aulia
