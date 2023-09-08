@@ -2,7 +2,7 @@ const certsServices = require("../services/certs.services");
 
 exports.verifyCert = (req, res, next) => {
   const certHeader = req.headers['certificate']
-  console.log('called');
+  console.log('Autentikasi sertifikat berhasil');
   if (!certHeader) {
     return res.status(401).send('No certs')
   }

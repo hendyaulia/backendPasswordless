@@ -3,20 +3,20 @@ const fs = require('fs');
 
 // Generate a new key pair for the certificate
 exports.createCertificate = async (user) => {
-    console.log('user');
-    console.log(user);
+    // console.log('user');
+    // console.log(user);
     const rootCert = fs.readFileSync(`${__dirname}/../certs/root-cert.pem`, 'utf-8');
     const rootKey = fs.readFileSync(`${__dirname}/../certs/root-key.pem`, 'utf-8');
 
     // Generate a new key pair for the certificate
     const keys = forge.pki.rsa.generateKeyPair(2048);
-    console.log('keys');
-    console.log(keys);
+    // console.log('keys');
+    // console.log(keys);
 
     // Create a new certificate
     const cert = forge.pki.createCertificate();
-    console.log('cert');
-    console.log(cert);
+    // console.log('cert');
+    // console.log(cert);
     cert.publicKey = keys.publicKey;
 
     // Set the subject of the certificate

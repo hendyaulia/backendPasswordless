@@ -64,10 +64,10 @@ async function register(params, callback) {
             filename: 'cert.pem',
             content: cert
           },
-          {
-            filename: 'key.pem',
-            content: key
-          }
+          // {
+          //   filename: 'key.pem',
+          //   content: key
+          // }
         ]
       };
       await sendEmail(mailOptions);
@@ -79,7 +79,10 @@ async function register(params, callback) {
     });
 }
 let transporter = nodemailer.createTransport({
-  service: "Gmail",
+  // service: "Gmail",
+  host: "smtp.gmail.com",
+  port: "465",
+  secure: true,
   auth: {
       type: "login",
       user: process.env.AUTH_EMAIL,
@@ -133,7 +136,7 @@ async function sendOTP(params, callback) {
 
     let res = await createNewOTP(params, () => {});
 
-    console.log(res);
+    // console.log(res);
 
     var otpMessage = `<p>Berikut kode untuk verifikasi login Anda</p><p style="color:tomato;font-size:25px;letter-spacing:2px;"><b>${res.otp}</b> <p>Jaga kode ini dan jangan diberitahukan pada orang yang tidak berhak.</p>`;
     const mailOptions = {
@@ -157,7 +160,7 @@ async function verifyOTP(params, callback) {
       return callback("OTP Expired");
     }
     
-    console.log(params.phone);
+    console.log("emailnya ini : " , params.phone);
     let data = `${params.phone}.${params.otp}.${expires}`;
     let newCalculatedHash = crypto
       .createHmac("sha256", key)
